@@ -2,14 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eternal GK – Gayani & Kasun Wedding Invitation</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Eternal GK – Gayani & Kasun | Enchanted Wedding</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Cinzel:wght@400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Cinzel:wght@400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,500&display=swap"
       rel="stylesheet"
     />
-
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       :root {
         --gold: #b8922a;
         --gold-mid: #c9a84c;
@@ -21,17 +29,7 @@
         --text-gold: #8b6914;
         --text-warm: #6b5020;
         --text-mid: #7a6035;
-      }
-
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      html {
-        scroll-behavior: smooth;
+        --shadow-gold: 0 20px 35px -12px rgba(184, 146, 42, 0.22);
       }
 
       body {
@@ -41,22 +39,22 @@
         overflow-x: hidden;
       }
 
-      /* ── Keyframes ── */
+      /* === ANIMATIONS === */
       @keyframes fadeUp {
-        from {
+        0% {
           opacity: 0;
           transform: translateY(35px);
         }
-        to {
+        100% {
           opacity: 1;
           transform: translateY(0);
         }
       }
       @keyframes fadeIn {
-        from {
+        0% {
           opacity: 0;
         }
-        to {
+        100% {
           opacity: 1;
         }
       }
@@ -71,12 +69,12 @@
       @keyframes twinkle {
         0%,
         100% {
-          opacity: 0.15;
-          transform: scale(0.7);
+          opacity: 0.1;
+          transform: scale(0.6);
         }
         50% {
           opacity: 0.9;
-          transform: scale(1.3);
+          transform: scale(1.2);
         }
       }
       @keyframes glowPulse {
@@ -101,64 +99,89 @@
           transform: translateY(-10px);
         }
       }
-      @keyframes rotateSlow {
-        from {
-          transform: rotate(0deg);
+      @keyframes softScale {
+        0% {
+          transform: scale(0.96);
+          opacity: 0;
         }
-        to {
-          transform: rotate(360deg);
+        100% {
+          transform: scale(1);
+          opacity: 1;
         }
       }
+      @keyframes swayLeaf {
+        0% {
+          transform: rotate(0deg) translateY(0px);
+        }
+        50% {
+          transform: rotate(3deg) translateY(-6px);
+        }
+        100% {
+          transform: rotate(0deg) translateY(0px);
+        }
+      }
+      @keyframes driftFlower {
+        0% {
+          transform: translateX(0) translateY(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.7;
+        }
+        90% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateX(var(--dx, 60px)) translateY(var(--dy, -100px))
+            rotate(25deg);
+          opacity: 0;
+        }
+      }
+      /* floating petal animation */
+      .floating-flower {
+        position: fixed;
+        pointer-events: none;
+        z-index: 999;
+        font-size: 1.6rem;
+        will-change: transform;
+        animation: driftFlower 8s ease-out forwards;
+      }
 
-      /* ══════════════════════════
-       HERO — VIDEO BACKGROUND
-    ══════════════════════════ */
+      /* Hero Section */
       .hero {
         position: relative;
         min-height: 100vh;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
         overflow: hidden;
         background: #f5edd6;
       }
-
       .hero-video {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 0.75;
+        opacity: 0.7;
         z-index: 0;
       }
-
-      /* soft white-gold overlay to keep text readable & light-toned */
       .hero-overlay {
         position: absolute;
         inset: 0;
         background:
           radial-gradient(
             ellipse at 50% 0%,
-            rgba(255, 252, 240, 0.55) 0%,
-            transparent 65%
+            rgba(255, 252, 240, 0.6) 0%,
+            transparent 70%
           ),
           radial-gradient(
             ellipse at 50% 100%,
-            rgba(245, 237, 214, 0.7) 0%,
-            transparent 60%
-          ),
-          linear-gradient(
-            180deg,
-            rgba(253, 250, 242, 0.4) 0%,
-            rgba(253, 250, 242, 0.18) 45%,
-            rgba(245, 237, 214, 0.55) 100%
+            rgba(245, 237, 214, 0.65) 0%,
+            transparent 65%
           );
         z-index: 1;
       }
-
-      /* sparkles */
       .sparkles {
         position: absolute;
         inset: 0;
@@ -171,28 +194,27 @@
         background: var(--gold-mid);
         animation: twinkle 2.5s ease-in-out infinite;
       }
-
-      /* hero card */
       .hero-content {
         position: relative;
         z-index: 3;
         text-align: center;
         padding: 50px 20px 70px;
-        max-width: 780px;
+        max-width: 800px;
         width: 100%;
       }
-
       .card-frame {
         position: relative;
         border: 1.5px solid rgba(184, 146, 42, 0.35);
-        padding: 52px 44px 60px;
-        background: rgba(255, 254, 250, 0.72);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        padding: 48px 32px 56px;
+        background: rgba(255, 254, 250, 0.78);
+        backdrop-filter: blur(10px);
+        border-radius: 4px;
         animation: glowPulse 4s ease-in-out infinite;
       }
       .card-frame::before,
-      .card-frame::after {
+      .card-frame::after,
+      .corner-tr,
+      .corner-bl {
         content: "";
         position: absolute;
         width: 44px;
@@ -210,13 +232,6 @@
         right: -2px;
         border-width: 0 2px 2px 0;
       }
-      .corner {
-        position: absolute;
-        width: 44px;
-        height: 44px;
-        border-color: var(--gold);
-        border-style: solid;
-      }
       .corner-tr {
         top: -2px;
         right: -2px;
@@ -228,52 +243,35 @@
         border-width: 0 0 2px 2px;
       }
 
-      /* logo */
-      .logo-wrap {
-        margin-bottom: 20px;
-        animation: fadeIn 0.9s ease both;
-      }
       .logo-wrap img {
-        width: 108px;
-        height: 108px;
-        object-fit: contain;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
         border-radius: 50%;
-        border: 2px solid rgba(184, 146, 42, 0.45);
-        padding: 6px;
-        background: rgba(245, 237, 214, 0.6);
+        border: 2px solid rgba(184, 146, 42, 0.5);
+        padding: 5px;
+        background: rgba(245, 237, 214, 0.7);
         animation: floatUp 5s ease-in-out infinite;
       }
-
       .theme-label {
         font-family: "Cinzel", serif;
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         letter-spacing: 0.38em;
         color: var(--gold);
         text-transform: uppercase;
-        margin-bottom: 14px;
-        animation: fadeUp 0.8s 0.15s ease both;
+        margin: 15px 0 8px;
       }
-
       .sri-mangala {
         font-family: "Cormorant Upright", serif;
-        font-style: italic;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         color: var(--text-gold);
-        letter-spacing: 0.12em;
-        margin-bottom: 20px;
-        animation: fadeUp 0.8s 0.3s ease both;
       }
-
-      /* dividers */
       .divider {
         display: flex;
         align-items: center;
         gap: 14px;
         justify-content: center;
         margin: 16px auto;
-        opacity: 0;
-        animation: fadeIn 1s 0.5s ease both;
-        animation-fill-mode: forwards;
       }
       .divider-line {
         flex: 1;
@@ -292,61 +290,126 @@
         background: var(--gold-mid);
         transform: rotate(45deg);
       }
-      .divider-sm .divider-line {
-        max-width: 55px;
-      }
-      .divider-sm .divider-diamond {
-        width: 5px;
-        height: 5px;
-      }
 
-      /* couple names */
+      /* NEW ELEGANT FONT STYLE FOR COUPLE NAMES — Playfair Display + Great Vibes hybrid */
       .couple-names {
         font-family: "Great Vibes", cursive;
-        font-size: clamp(3.6rem, 10vw, 6.2rem);
-        line-height: 1.05;
-        margin: 8px 0 4px;
+        font-size: clamp(3.8rem, 11vw, 6.5rem);
+        font-weight: 600;
+        font-style: italic;
         background: linear-gradient(
           135deg,
-          #8b6914 0%,
-          #c9a84c 35%,
-          #e8d5a3 55%,
-          #c9a84c 75%,
-          #8b6914 100%
+          #a87d1a,
+          #dbb444,
+          #f3e0a3,
+          #dbb444,
+          #a87d1a
         );
         background-size: 200% auto;
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation:
-          fadeUp 0.9s 0.4s ease both,
-          shimmer 5s linear 1.5s infinite;
-        filter: drop-shadow(0 2px 8px rgba(184, 146, 42, 0.25));
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 6s linear infinite;
+        letter-spacing: 0.02em;
+        text-shadow: 0 2px 12px rgba(184, 146, 42, 0.2);
       }
       .ampersand {
         display: block;
-        font-size: clamp(1.8rem, 5vw, 3.2rem);
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(2rem, 6vw, 3.2rem);
         color: var(--gold);
         -webkit-text-fill-color: var(--gold);
+        background: none;
         margin: -6px 0;
       }
-
       .blessing {
-        font-size: 1.05rem;
-        line-height: 1.9;
+        font-size: 1rem;
+        line-height: 1.7;
         color: var(--text-warm);
-        max-width: 500px;
-        margin: 0 auto;
-        animation: fadeUp 0.8s 0.65s ease both;
-      }
-      .blessing strong {
-        color: var(--text-gold);
-        font-weight: 600;
       }
 
-      /* ══════════════════════════
-       SHARED SECTION STYLES
-    ══════════════════════════ */
+      /* MODERN COUNTDOWN */
+      .countdown-section {
+        background: linear-gradient(
+          120deg,
+          var(--white) 0%,
+          var(--gold-soft) 100%
+        );
+        padding: 70px 24px 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .countdown-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.2rem, 7vw, 3.4rem);
+        font-weight: 600;
+        background: linear-gradient(135deg, #8b6914, #c9a84c);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .countdown-sub {
+        font-family: "Cinzel", serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.3em;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+      .countdown-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 28px;
+        margin: 30px auto 20px;
+        max-width: 800px;
+      }
+      .countdown-card {
+        background: rgba(255, 254, 250, 0.88);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(184, 146, 42, 0.3);
+        border-radius: 28px;
+        padding: 20px 0;
+        min-width: 110px;
+        flex: 1;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        box-shadow: var(--shadow-gold);
+        animation: softScale 0.7s ease both;
+      }
+      .countdown-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: var(--gold);
+        background: white;
+        box-shadow: 0 25px 35px -15px rgba(184, 146, 42, 0.3);
+      }
+      .countdown-number {
+        font-family: "Cinzel", serif;
+        font-size: clamp(2.8rem, 9vw, 4.2rem);
+        font-weight: 600;
+        color: var(--text-gold);
+        line-height: 1;
+      }
+      .countdown-label {
+        font-family: "Cormorant Upright", serif;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--gold-mid);
+      }
+      .countdown-message {
+        margin-top: 35px;
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: var(--gold);
+        background: rgba(255, 250, 240, 0.7);
+        display: inline-block;
+        padding: 10px 28px;
+        border-radius: 60px;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(184, 146, 42, 0.3);
+      }
+
+      /* Other sections */
       .section {
         padding: 80px 24px;
       }
@@ -355,305 +418,168 @@
         margin: 0 auto;
         text-align: center;
       }
-
-      /* light cream sections */
-      .sec-cream {
-        background: var(--cream);
-      }
       .sec-soft {
         background: var(--gold-soft);
       }
       .sec-white {
         background: var(--white);
       }
-
       .section-eyebrow {
         font-family: "Cinzel", serif;
         font-size: 0.72rem;
         letter-spacing: 0.35em;
         color: var(--gold);
         text-transform: uppercase;
-        margin-bottom: 14px;
       }
       .section-title {
-        font-family: "Great Vibes", cursive;
-        font-size: clamp(2.6rem, 7vw, 4.2rem);
-        background: linear-gradient(
-          135deg,
-          #8b6914,
-          #c9a84c,
-          #e8d5a3,
-          #c9a84c,
-          #8b6914
-        );
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.6rem, 7vw, 4rem);
+        font-weight: 600;
+        background: linear-gradient(135deg, #8b6914, #c9a84c);
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
         background-clip: text;
-        line-height: 1.15;
-        margin-bottom: 10px;
+        -webkit-text-fill-color: transparent;
       }
-      .section-body {
-        font-size: 1.08rem;
-        line-height: 2;
-        color: var(--text-warm);
-        max-width: 560px;
-        margin: 0 auto;
-      }
-
-      /* ── Details Grid ── */
       .details-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 24px;
-        margin-top: 38px;
+        margin-top: 40px;
       }
       .detail-card {
         border: 1px solid rgba(184, 146, 42, 0.25);
         padding: 30px 20px;
-        text-align: center;
         background: rgba(255, 254, 250, 0.85);
-        position: relative;
-        transition:
-          border-color 0.3s,
-          background 0.3s,
-          transform 0.3s;
+        transition: all 0.35s ease;
+        border-radius: 20px;
       }
       .detail-card:hover {
         border-color: var(--gold-mid);
-        background: rgba(245, 237, 214, 0.6);
-        transform: translateY(-4px);
-      }
-      .detail-card::before,
-      .detail-card::after {
-        content: "";
-        position: absolute;
-        width: 14px;
-        height: 14px;
-        border-color: var(--gold);
-        border-style: solid;
-      }
-      .detail-card::before {
-        top: -1px;
-        left: -1px;
-        border-width: 2px 0 0 2px;
-      }
-      .detail-card::after {
-        bottom: -1px;
-        right: -1px;
-        border-width: 0 2px 2px 0;
+        transform: translateY(-6px) scale(1.01);
+        background: white;
+        box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.1);
       }
       .detail-icon {
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-bottom: 10px;
-        display: block;
       }
       .detail-label {
         font-family: "Cinzel", serif;
         font-size: 0.68rem;
         letter-spacing: 0.25em;
         color: var(--gold);
-        text-transform: uppercase;
-        margin-bottom: 8px;
       }
       .detail-value {
         font-family: "Cormorant Upright", serif;
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         color: var(--text-gold);
-        line-height: 1.55;
       }
-      .detail-sub {
-        font-size: 0.9rem;
-        color: var(--text-mid);
-        margin-top: 4px;
-      }
-
-      /* poruwa badge */
       .poruwa-badge {
         display: inline-block;
         border: 1.5px solid var(--gold-mid);
         padding: 16px 38px;
-        margin: 38px auto 0;
+        margin-top: 45px;
         font-family: "Cinzel", serif;
-        font-size: 0.95rem;
+        font-size: 0.85rem;
         letter-spacing: 0.2em;
         color: var(--gold);
         text-transform: uppercase;
         background: rgba(255, 254, 250, 0.8);
-        animation: glowPulse 3.5s ease-in-out infinite;
+        border-radius: 60px;
+        animation: glowPulse 3s infinite;
       }
       .poruwa-time {
         display: block;
-        font-family: "Great Vibes", cursive;
-        font-size: 2.1rem;
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
         color: var(--gold);
-        letter-spacing: 0.06em;
-        margin-top: 4px;
       }
-
-      /* ── Gallery ── */
       .gallery {
-        background: var(--white);
         padding: 80px 24px;
+        background: var(--white);
       }
       .gallery-grid {
         display: grid;
         grid-template-columns: 2fr 1fr;
-        grid-template-rows: auto auto;
-        gap: 10px;
-        max-width: 900px;
+        gap: 12px;
+        max-width: 1000px;
         margin: 40px auto 0;
       }
       .gallery-item {
         overflow: hidden;
-        position: relative;
+        border-radius: 28px;
+        box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s;
       }
       .gallery-item:first-child {
-        grid-row: 1/3;
+        grid-row: span 2;
       }
       .gallery-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        display: block;
         transition:
           transform 0.8s ease,
-          filter 0.5s ease;
-        filter: sepia(0.1) saturate(0.95) brightness(1.02);
-        min-height: 200px;
+          filter 0.6s;
+        filter: sepia(0.08) saturate(0.98);
+        display: block;
       }
       .gallery-item:hover img {
-        transform: scale(1.04);
-        filter: sepia(0) saturate(1.05) brightness(1.04);
+        transform: scale(1.05);
+        filter: sepia(0) saturate(1.02);
       }
-      .gallery-item::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border: 1px solid rgba(184, 146, 42, 0.2);
-        pointer-events: none;
-        transition: border-color 0.3s;
-      }
-      .gallery-item:hover::after {
-        border-color: rgba(184, 146, 42, 0.5);
-      }
-
-      /* Image fallback */
-      .gallery-item img[data-error="true"] {
-        display: none;
-      }
-      .img-fallback {
-        display: none;
-        width: 100%;
-        height: 100%;
-        min-height: 200px;
-        background: linear-gradient(135deg, #f5edd6, #e8d5a3);
-        align-items: center;
-        justify-content: center;
-        font-family: "Great Vibes", cursive;
-        font-size: 1.8rem;
-        color: var(--gold);
-        flex-direction: column;
-        gap: 8px;
-      }
-      .img-fallback.show {
-        display: flex;
-      }
-
-      /* ── Venue ── */
       .venue-section {
         background: var(--gold-soft);
         padding: 80px 24px;
         text-align: center;
       }
       .venue-name {
-        font-family: "Cormorant Upright", serif;
+        font-family: "Playfair Display", serif;
         font-size: 2rem;
         color: var(--text-gold);
-        letter-spacing: 0.08em;
-        margin: 18px 0 8px;
       }
       .venue-link {
         display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 26px;
-        padding: 14px 38px;
+        gap: 12px;
+        margin-top: 28px;
+        padding: 12px 38px;
         border: 1.5px solid var(--gold);
         color: var(--gold);
         text-decoration: none;
         font-family: "Cinzel", serif;
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         letter-spacing: 0.2em;
-        text-transform: uppercase;
-        background: rgba(255, 254, 250, 0.7);
-        transition:
-          background 0.3s,
-          color 0.3s,
-          transform 0.2s;
+        border-radius: 60px;
+        transition: all 0.3s;
+        background: rgba(255, 255, 250, 0.7);
       }
       .venue-link:hover {
         background: var(--gold);
-        color: #fff;
-        transform: translateY(-2px);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 20px -12px rgba(184, 146, 42, 0.5);
       }
-
-      /* ── Closing ── */
       .closing-section {
         background: var(--white);
-        padding: 80px 24px 100px;
+        padding: 70px 24px 100px;
         text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-      .closing-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 1px;
-        height: 55px;
-        background: linear-gradient(180deg, transparent, var(--gold-mid));
-      }
-      .closing-blessing {
-        font-family: "Cormorant Upright", serif;
-        font-style: italic;
-        font-size: 1.4rem;
-        color: var(--text-mid);
-        line-height: 1.75;
-        margin-bottom: 26px;
       }
       .closing-names {
-        font-family: "Great Vibes", cursive;
-        font-size: clamp(2.4rem, 7vw, 3.8rem);
-        background: linear-gradient(
-          135deg,
-          #8b6914,
-          #c9a84c,
-          #e8d5a3,
-          #c9a84c,
-          #8b6914
-        );
+        font-family: "Playfair Display", "Great Vibes", cursive;
+        font-size: clamp(2.6rem, 8vw, 4rem);
+        font-weight: 600;
+        background: linear-gradient(135deg, #8b6914, #c9a84c);
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
         background-clip: text;
-        display: block;
-      }
-      .closing-eternal {
-        font-family: "Cinzel", serif;
-        font-size: 0.78rem;
-        letter-spacing: 0.4em;
-        color: var(--gold);
-        text-transform: uppercase;
-        margin-top: 22px;
+        -webkit-text-fill-color: transparent;
       }
 
-      /* ── Scroll reveal ── */
+      /* reveal animation */
       .reveal {
         opacity: 0;
         transform: translateY(28px);
         transition:
-          opacity 0.9s ease,
+          opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1),
           transform 0.9s ease;
       }
       .reveal.visible {
@@ -661,31 +587,43 @@
         transform: translateY(0);
       }
 
-      /* ── Responsive ── */
-      @media (max-width: 600px) {
+      /* Mobile */
+      @media (max-width: 640px) {
+        .countdown-grid {
+          gap: 14px;
+        }
+        .countdown-card {
+          min-width: 72px;
+          padding: 14px 0;
+        }
+        .countdown-number {
+          font-size: 2rem;
+        }
+        .countdown-label {
+          font-size: 0.7rem;
+        }
         .card-frame {
-          padding: 32px 18px 42px;
+          padding: 32px 18px 44px;
         }
         .gallery-grid {
           grid-template-columns: 1fr;
-          grid-template-rows: auto;
+          gap: 14px;
         }
         .gallery-item:first-child {
           grid-row: auto;
         }
-        .gallery-item {
-          min-height: 220px;
+        .detail-card {
+          padding: 20px;
         }
-        .details-grid {
-          grid-template-columns: 1fr;
+        .countdown-message {
+          font-size: 1.1rem;
+          padding: 8px 20px;
         }
       }
     </style>
   </head>
   <body>
-    <!-- ════════════════════════════════════════
-     HERO  – forest video background
-════════════════════════════════════════ -->
+    <!-- Hero Section -->
     <section class="hero">
       <video
         class="hero-video"
@@ -702,62 +640,84 @@
       </video>
       <div class="hero-overlay"></div>
       <div class="sparkles" id="sparkles"></div>
-
       <div class="hero-content">
         <div class="card-frame">
           <div class="corner corner-tr"></div>
           <div class="corner corner-bl"></div>
-
-          <!-- Logo -->
           <div class="logo-wrap">
             <img
-              id="logo-img"
               src="https://drive.google.com/thumbnail?id=1G7ESsCZSxeOKo527tVwglSJE0Yaz0Q34&sz=w400"
-              alt="Eternal GK Logo"
+              alt="Eternal GK"
             />
           </div>
-
           <p class="theme-label">✦ Eternal GK ✦</p>
           <p class="sri-mangala">Sri Mangala Vivahaya</p>
-
-          <div class="divider divider-sm">
+          <div class="divider">
             <div class="divider-line"></div>
             <div class="divider-diamond"></div>
             <div class="divider-line"></div>
           </div>
-
-          <p
-            class="blessing"
-            style="margin-bottom: 18px; font-style: italic; font-size: 0.98rem"
-          >
-            With the blessings of our beloved parents<br />
-            and guided by sacred traditions,<br />
-            we joyfully announce the auspicious union of
+          <p class="blessing" style="font-style: italic">
+            With the blessings of our beloved parents<br />we joyfully announce
+            the union of
           </p>
-
           <div class="couple-names">
-            Gayani
-            <span class="ampersand">&amp;</span>
-            Kasun
+            Gayani<span class="ampersand">&amp;</span>Kasun
           </div>
-
-          <div class="divider" style="margin-top: 20px">
+          <div class="divider">
             <div class="divider-line"></div>
             <div class="divider-diamond"></div>
             <div class="divider-line"></div>
           </div>
-
-          <p class="blessing" style="margin-top: 16px; font-style: italic">
-            as we tie the golden knot<br />
-            and begin our <strong>eternal journey</strong> together.
+          <p class="blessing">
+            as we tie the golden knot<br />and begin our
+            <strong>eternal journey</strong> together.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════
-     INVITATION
-════════════════════════════════════════ -->
+    <!-- Countdown Section - Live -->
+    <section class="countdown-section">
+      <div class="section-inner">
+        <p class="countdown-sub reveal">Counting the moments until forever</p>
+        <h2 class="countdown-title reveal">⌛ Gayani & Kasun ⌛</h2>
+        <div class="divider reveal">
+          <div class="divider-line"></div>
+          <div class="divider-diamond"></div>
+          <div class="divider-line"></div>
+        </div>
+        <div class="countdown-grid" id="countdownGrid">
+          <div class="countdown-card">
+            <div class="countdown-number" id="days">00</div>
+            <div class="countdown-label">Days</div>
+          </div>
+          <div class="countdown-card">
+            <div class="countdown-number" id="hours">00</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-card">
+            <div class="countdown-number" id="minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-card">
+            <div class="countdown-number" id="seconds">00</div>
+            <div class="countdown-label">Seconds</div>
+          </div>
+        </div>
+        <div class="countdown-message reveal" id="statusMessage">
+          ✨ Until we say "I Do" ✨
+        </div>
+        <p
+          class="countdown-note reveal"
+          style="margin-top: 20px; font-size: 0.85rem"
+        >
+          11th June 2026 — Poruwa Ceremony at 9:03 AM
+        </p>
+      </div>
+    </section>
+
+    <!-- Invitation -->
     <section class="section sec-soft">
       <div class="section-inner">
         <p class="section-eyebrow reveal">You Are Cordially Invited</p>
@@ -767,112 +727,88 @@
           <div class="divider-diamond"></div>
           <div class="divider-line"></div>
         </div>
-        <p class="section-body reveal" style="margin-top: 18px">
-          We warmly invite you to grace our Poruwa Ceremony<br />
-          and bless us as we promise a lifetime of<br />
+        <p
+          class="section-body reveal"
+          style="margin-top: 18px; font-size: 1.08rem"
+        >
+          We warmly invite you to grace our Poruwa Ceremony<br />and bless us as
+          we promise a lifetime of
           <em style="color: var(--gold)">love, faith, and togetherness.</em>
         </p>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════
-     DETAILS
-════════════════════════════════════════ -->
+    <!-- Details -->
     <section class="section sec-white">
       <div class="section-inner">
         <p class="section-eyebrow reveal">The Celebration</p>
-        <h2 class="section-title reveal">When &amp; Where</h2>
-
+        <h2 class="section-title reveal">When & Where</h2>
         <div class="details-grid">
-          <div class="detail-card reveal" style="transition-delay: 0.1s">
+          <div class="detail-card reveal">
             <span class="detail-icon">🗓</span>
             <p class="detail-label">Date</p>
             <p class="detail-value">11 June 2026</p>
-            <p class="detail-sub">Wednesday</p>
+            <p class="detail-sub">Thursday</p>
           </div>
-          <div class="detail-card reveal" style="transition-delay: 0.2s">
+          <div class="detail-card reveal">
             <span class="detail-icon">⏰</span>
             <p class="detail-label">Time</p>
             <p class="detail-value">9.00 AM – 4.30 PM</p>
             <p class="detail-sub">Full day celebration</p>
           </div>
-          <div class="detail-card reveal" style="transition-delay: 0.3s">
+          <div class="detail-card reveal">
             <span class="detail-icon">📍</span>
             <p class="detail-label">Venue</p>
-            <p class="detail-value">Hotel Shiny Sundream</p>
+            <p class="detail-value">Hotel Shiny Sundream | Hikkaduwa</p>
           </div>
         </div>
-
-        <div class="poruwa-badge reveal" style="margin-top: 50px">
-          ✦ Poruwa Ceremony ✦
-          <span class="poruwa-time">9.03 a.m.</span>
+        <div class="poruwa-badge reveal">
+          ✦ Poruwa Ceremony ✦<span class="poruwa-time">9.03 a.m.</span>
         </div>
         <p
           class="section-body reveal"
-          style="margin-top: 20px; font-style: italic; color: var(--text-mid)"
+          style="margin-top: 20px; font-style: italic"
         >
           Bless us as we promise a lifetime of love, faith, and togetherness
         </p>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════
-     GALLERY
-════════════════════════════════════════ -->
+    <!-- Gallery -->
     <section class="gallery">
       <div class="section-inner">
-        <p class="section-eyebrow reveal" style="color: var(--gold)">
-          Moments Together
-        </p>
+        <p class="section-eyebrow reveal">Moments Together</p>
         <h2 class="section-title reveal">Our Story</h2>
       </div>
-
       <div class="gallery-grid reveal">
-        <!-- Image 1 – 5898×3937 -->
-        <div class="gallery-item" style="min-height: 430px">
+        <div class="gallery-item">
           <img
             src="https://drive.google.com/thumbnail?id=1-kzwG7aumDbESubjYAIO23mhYV7jG_DP&sz=w1200"
-            alt="Gayani and Kasun"
+            alt="Couple"
             loading="lazy"
-            onerror="
-              this.setAttribute('data-error', 'true');
-              this.nextElementSibling.classList.add('show');
-            "
+            onerror="this.style.opacity = '0'"
           />
-          <div class="img-fallback">💍<span>Gayani &amp; Kasun</span></div>
         </div>
-        <!-- Image 2 – 2500×1667 -->
-        <div class="gallery-item" style="min-height: 205px">
+        <div class="gallery-item">
           <img
             src="https://drive.google.com/thumbnail?id=1PwAAY9LOMUuTyxSuDKhsloh73y6eVyap&sz=w800"
-            alt="Wedding moment"
+            alt="Moment"
             loading="lazy"
-            onerror="
-              this.setAttribute('data-error', 'true');
-              this.nextElementSibling.classList.add('show');
-            "
+            onerror="this.style.opacity = '0'"
           />
-          <div class="img-fallback">✨<span>Our Moment</span></div>
         </div>
-        <!-- Image 3 – 3500×2336 -->
-        <div class="gallery-item" style="min-height: 205px">
+        <div class="gallery-item">
           <img
             src="https://drive.google.com/thumbnail?id=1Qpk_RPlxwkyRmC1OFJ68nTxnlDPzXrpF&sz=w800"
-            alt="Wedding moment"
+            alt="Together"
             loading="lazy"
-            onerror="
-              this.setAttribute('data-error', 'true');
-              this.nextElementSibling.classList.add('show');
-            "
+            onerror="this.style.opacity = '0'"
           />
-          <div class="img-fallback">🌸<span>Together</span></div>
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════
-     VENUE
-════════════════════════════════════════ -->
+    <!-- Venue -->
     <section class="venue-section">
       <p class="section-eyebrow reveal">Find Us</p>
       <h2 class="section-title reveal">The Venue</h2>
@@ -881,100 +817,164 @@
         <div class="divider-diamond"></div>
         <div class="divider-line"></div>
       </div>
-      <p class="venue-name reveal">Hotel Shiny Sundream</p>
-      <p
-        class="section-body reveal"
-        style="margin-top: 10px; font-style: italic; color: var(--text-mid)"
-      >
+      <p class="venue-name reveal">Hotel Shiny Sundream | Hikkaduwa</p>
+      <p class="section-body reveal" style="margin-top: 10px">
         Your presence will be our greatest blessing
       </p>
-      <div class="reveal" style="margin-top: 30px">
+      <div class="reveal">
         <a
           class="venue-link"
           href="https://maps.app.goo.gl/2Kq4RvziTPVMyyD86"
           target="_blank"
-          rel="noopener"
+          >📍 &nbsp;View on Google Maps</a
         >
-          📍 &nbsp;View on Google Maps
-        </a>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════
-     CLOSING
-════════════════════════════════════════ -->
+    <!-- Closing -->
     <section class="closing-section">
-      <div class="section-inner">
-        <div class="divider reveal">
-          <div class="divider-line"></div>
-          <div class="divider-diamond"></div>
-          <div class="divider-line"></div>
-        </div>
-
-        <p class="closing-blessing reveal" style="margin-top: 42px">
-          Your presence will be our greatest blessing<br />
-          as we celebrate
-        </p>
-
-        <p
-          class="section-eyebrow reveal"
-          style="font-size: 0.95rem; letter-spacing: 0.3em"
-        >
-          ✨ &nbsp;Eternal GK&nbsp; ✨
-        </p>
-
-        <span class="closing-names reveal">Gayani &amp; Kasun</span>
-
-        <div class="divider reveal" style="margin-top: 34px">
-          <div class="divider-line"></div>
-          <div class="divider-diamond"></div>
-          <div class="divider-line"></div>
-        </div>
-
-        <p
-          class="closing-blessing reveal"
-          style="font-size: 1.1rem; margin-top: 28px"
-        >
-          With love and gratitude,<br />
-          <em style="color: var(--gold)">Gayani &amp; Kasun</em>
-        </p>
-
-        <p class="closing-eternal reveal" style="margin-top: 38px">
-          ✦ &nbsp; Together Forever &nbsp; ✦
-        </p>
+      <div class="divider reveal">
+        <div class="divider-line"></div>
+        <div class="divider-diamond"></div>
+        <div class="divider-line"></div>
       </div>
+      <p
+        class="closing-blessing reveal"
+        style="margin-top: 42px; font-size: 1.2rem"
+      >
+        Your presence will be our greatest blessing<br />as we celebrate
+      </p>
+      <p class="section-eyebrow reveal" style="font-size: 0.95rem">
+        ✨ &nbsp;Eternal GK&nbsp; ✨
+      </p>
+      <span class="closing-names reveal">Gayani &amp; Kasun</span>
+      <div class="divider reveal" style="margin-top: 34px">
+        <div class="divider-line"></div>
+        <div class="divider-diamond"></div>
+        <div class="divider-line"></div>
+      </div>
+      <p class="closing-blessing reveal" style="font-size: 1rem">
+        With love and gratitude,<br /><em style="color: var(--gold)"
+          >Gayani &amp; Kasun</em
+        >
+      </p>
+      <p
+        class="closing-eternal reveal"
+        style="
+          margin-top: 38px;
+          font-family: &quot;Cinzel&quot;;
+          letter-spacing: 0.3em;
+        "
+      >
+        ✦ &nbsp; Together Forever &nbsp; ✦
+      </p>
     </section>
 
     <script>
-      /* Sparkles – soft gold dots on the hero */
-      const sc = document.getElementById("sparkles");
-      for (let i = 0; i < 50; i++) {
-        const s = document.createElement("div");
+      // SPARKLES
+      const sparkContainer = document.getElementById("sparkles");
+      for (let i = 0; i < 70; i++) {
+        let s = document.createElement("div");
         s.className = "sparkle";
-        const size = 2 + Math.random() * 3.5;
-        s.style.cssText = `
-      left:${Math.random() * 100}%;
-      top:${Math.random() * 100}%;
-      width:${size}px; height:${size}px;
-      animation-delay:${Math.random() * 5}s;
-      animation-duration:${2 + Math.random() * 3}s;
-    `;
-        sc.appendChild(s);
+        let size = 2 + Math.random() * 4;
+        s.style.cssText = `left:${Math.random() * 100}%; top:${Math.random() * 100}%; width:${size}px; height:${size}px; animation-delay:${Math.random() * 5}s; animation-duration:${2 + Math.random() * 4}s; background: radial-gradient(circle, var(--gold-light), var(--gold));`;
+        sparkContainer.appendChild(s);
       }
 
-      /* Scroll reveal */
-      const obs = new IntersectionObserver(
+      // LIVE COUNTDOWN
+      const eventDate = new Date(2026, 5, 11, 9, 3, 0);
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const dist = eventDate.getTime() - now;
+        if (dist <= 0) {
+          document.getElementById("days").innerText = "00";
+          document.getElementById("hours").innerText = "00";
+          document.getElementById("minutes").innerText = "00";
+          document.getElementById("seconds").innerText = "00";
+          document.getElementById("statusMessage").innerHTML =
+            "🎉 Blessed Union — Today is the Wedding Day! 🎉";
+          return;
+        }
+        const days = Math.floor(dist / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((dist % 86400000) / (1000 * 60 * 60));
+        const minutes = Math.floor((dist % 3600000) / (1000 * 60));
+        const seconds = Math.floor((dist % 60000) / 1000);
+        document.getElementById("days").innerText =
+          days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerText =
+          hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerText =
+          minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerText =
+          seconds < 10 ? "0" + seconds : seconds;
+        if (days <= 7 && days > 0)
+          document.getElementById("statusMessage").innerHTML =
+            "💛 The golden week has arrived! 💛";
+        else if (days <= 30 && days > 7)
+          document.getElementById("statusMessage").innerHTML =
+            "🌿 Counting each sunset closer to forever 🌿";
+        else
+          document.getElementById("statusMessage").innerHTML =
+            "✨ Until we say 'I Do' ✨";
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // FLOWER / PETAL ANIMATION (modern floating flowers)
+      const flowerSymbols = [
+        "🌸",
+        "🌼",
+        "🌺",
+        "🌸",
+        "🌷",
+        "🌻",
+        "🌿",
+        "✨",
+        "🌿",
+        "🌺",
+      ];
+      function createFloatingFlower() {
+        const flower = document.createElement("div");
+        flower.className = "floating-flower";
+        const randomFlower =
+          flowerSymbols[Math.floor(Math.random() * flowerSymbols.length)];
+        flower.innerHTML = randomFlower;
+        const startX = Math.random() * window.innerWidth;
+        const dx = (Math.random() - 0.5) * 180;
+        const dy = -(100 + Math.random() * 200);
+        flower.style.left = startX + "px";
+        flower.style.bottom = "-20px";
+        flower.style.setProperty("--dx", dx + "px");
+        flower.style.setProperty("--dy", dy + "px");
+        flower.style.fontSize = 1.2 + Math.random() * 1.5 + "rem";
+        flower.style.opacity = "0.7";
+        flower.style.animation = `driftFlower 7s ease-out forwards`;
+        document.body.appendChild(flower);
+        setTimeout(() => {
+          if (flower && flower.remove) flower.remove();
+        }, 7500);
+      }
+      setInterval(() => {
+        createFloatingFlower();
+      }, 1800);
+      for (let i = 0; i < 4; i++)
+        setTimeout(() => createFloatingFlower(), i * 400);
+
+      // Reveal Observer
+      const observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("visible");
-              obs.unobserve(e.target);
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.1 },
+        { threshold: 0.12, rootMargin: "0px 0px -15px 0px" },
       );
-      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>
